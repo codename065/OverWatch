@@ -6,7 +6,7 @@ class OverWatch {
                 set(target, name, value) {
                     target[name] = value;
                     if(typeof value === 'string')
-                        document.body.innerHTML = document.body.innerHTML.replace(`{${this.ID}.${name}}`, value);
+                        document.getElementById(this.ID).innerHTML = document.getElementById(this.ID).innerHTML.replace(`{${this.ID}.${name}}`, value);
                     if(typeof value === 'object'){
                         ow.process(name, value);
                     }
