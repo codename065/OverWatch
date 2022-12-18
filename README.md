@@ -31,7 +31,9 @@ Hello W3 Eden
 
 
 ### on update data:
-```watcher.data.company = { name: 'W3 Eden, Inc.', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}, {title: 'FAQ 3'}] }```
+```
+watcher.data.company = { name: 'W3 Eden, Inc.', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}, {title: 'FAQ 3'}] }
+```
 
 ### output:
 
