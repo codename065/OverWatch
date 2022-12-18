@@ -5,22 +5,23 @@ Simple interactive stateful javascript template engine
 ## usage:
 
 ### html:
-`
-&lt;div id="company">
+```
+<div id="company">
 Hello {company.name}
-  &lt;ul>
-    &lt;loop :for="company.faqs" :each="faq">
-    &lt;li>{faq.title}</li>
-  &lt;/loop>
-  &lt;/ul>
+  <ul>
+    <loop :for="company.faqs" :each="faq">
+    <li>{faq.title}</li>
+  </loop>
+  </ul>
 </div>
-`
+```
 
 ### js:
 
-`
+```
 let watcher = new OverWatch('company'); 
-watcher.data.company = { name: 'W3 Eden', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}] } `
+watcher.data.company = { name: 'W3 Eden', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}] } 
+```
 
 ### output:
 
@@ -30,7 +31,7 @@ Hello W3 Eden
 
 
 ### on update data:
-`watcher.data.company = { name: 'W3 Eden, Inc.', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}, {title: 'FAQ 3'}] }` 
+```watcher.data.company = { name: 'W3 Eden, Inc.', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}, {title: 'FAQ 3'}] }```
 
 ### output:
 
