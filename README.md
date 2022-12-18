@@ -16,7 +16,8 @@ Hello {company.name}
 
 ### js:
 
-`let watcher = new OverWatch('company'); 
+`
+let watcher = new OverWatch('company'); 
 watcher.data.company = { name: 'W3 Eden', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}] } `
 
 ### output:
