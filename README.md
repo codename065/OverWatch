@@ -19,8 +19,11 @@ Hello {company.name}
 ### js:
 
 ```
+<script src="OverWatch.js"></script>
+<script>
 let watcher = new OverWatch('company'); 
 watcher.data.company = { name: 'W3 Eden', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}] } 
+</script>
 ```
 
 ### output:
@@ -32,7 +35,9 @@ Hello W3 Eden
 
 ### on update data:
 ```
+<script>
 watcher.data.company = { name: 'W3 Eden, Inc.', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}, {title: 'FAQ 3'}] }
+</script>
 ```
 
 ### output:
