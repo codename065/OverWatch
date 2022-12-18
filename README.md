@@ -22,9 +22,8 @@ watcher.data.company = { name: 'W3 Eden', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 
 ### output:
 
 Hello W3 Eden
-
-    * FAQ 1
-    * FAQ 2
+* FAQ 1
+* FAQ 2
 
 
 ### on update data:
@@ -33,6 +32,6 @@ watcher.data.company = { name: 'W3 Eden, Inc.', faqs: [{title: 'FAQ 1'}, {title:
 output:
 Hello W3 Eden, Inc.
 
-    * FAQ 1
-    * FAQ 2
-    * FAQ 3
+* FAQ 1
+* FAQ 2
+* FAQ 3
