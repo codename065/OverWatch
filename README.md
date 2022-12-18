@@ -5,6 +5,7 @@ Simple interactive stateful javascript template engine
 ## usage:
 
 ### html:
+`
 <div id="company">
 Hello {company.name}
   <ul>
@@ -13,7 +14,7 @@ Hello {company.name}
   </loop>
   </ul>
 </div>
-
+`
 ### js:
 
 `
