@@ -6,15 +6,16 @@ Simple interactive stateful javascript template engine
 
 ### html:
 `
-<div id="company">
+&lt;div id="company">
 Hello {company.name}
-  <ul>
-    <loop :for="company.faqs" :each="faq">
-    <li>{faq.title}</li>
-  </loop>
-  </ul>
+  &lt;ul>
+    &lt;loop :for="company.faqs" :each="faq">
+    &lt;li>{faq.title}</li>
+  &lt;/loop>
+  &lt;/ul>
 </div>
 `
+
 ### js:
 
 `
