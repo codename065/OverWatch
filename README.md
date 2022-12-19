@@ -5,13 +5,13 @@ Simple interactive stateful javascript template engine
 ## usage:
 
 ### html:
-```
+```html
 <div id="company">
 Hello {company.name}
   <ul>
     <loop :for="company.faqs" :each="faq">
-    <li>{faq.title}</li>
-  </loop>
+      <li>{faq.title}</li>
+    </loop>
   </ul>
 </div>
 ```
