@@ -18,7 +18,7 @@ Hello {company.name}
 
 ### js:
 
-```
+```html
 <script src="OverWatch.js"></script>
 <script>
 let watcher = new OverWatch('company'); 
