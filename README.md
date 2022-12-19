@@ -1,5 +1,5 @@
 # OverWatch
-Simple interactive stateful javascript template engine
+Simple interactive stateful javascript template engine ( < 1 KB )
 
 
 ## usage:
