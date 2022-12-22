@@ -7,7 +7,7 @@ Simple interactive stateful javascript template engine ( ~ 1 KB )
 ### html:
 ```html
 <div id="company">
-<img o-attr="src" w-val="company.logo" />
+<img o-attr="src" w-val="company.logo" with=120/>
 Welcome to {company.name}
   <ul>
     <loop :for="company.faqs" :each="faq">
@@ -28,7 +28,7 @@ watcher.data.company = { name: 'W3 Eden', logo: 'https://w3eden.com/wp-content/u
 ```
 
 ### output:
-<img src='https://w3eden.com/wp-content/uploads/2021/07/w3edeng-logo-fav.png' />
+<img src='https://w3eden.com/wp-content/uploads/2021/07/w3edeng-logo-fav.png' with=120/>
 Welcome to W3 Eden
 
 * FAQ 1
@@ -43,7 +43,7 @@ watcher.data.company.faqs = [{title: 'FAQ 1'}, {title: 'FAQ 2'}, {title: 'FAQ 3'
 ```
 
 ### output:
-<img src='https://w3eden.com/wp-content/uploads/2021/07/w3edeng-logo-fav.png' />
+<img src='https://w3eden.com/wp-content/uploads/2021/07/w3edeng-logo-fav.png'  with=120/>
 Welcome to W3 Eden, Inc.
 
 * FAQ 1
