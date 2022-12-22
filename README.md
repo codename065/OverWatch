@@ -10,7 +10,7 @@ Simple interactive stateful javascript template engine ( < 1 KB )
 Hello {company.name}
   <ul>
     <loop :for="company.faqs" :each="faq">
-      <li>{faq.title}</li>
+      <li>:faq.title</li>
     </loop>
   </ul>
 </div>
@@ -21,7 +21,7 @@ Hello {company.name}
 ```html
 <script src="OverWatch.js"></script>
 <script>
-let watcher = new OverWatch('company'); 
+let watcher = OverWatch('company'); 
 watcher.data.company = { name: 'W3 Eden', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}] } 
 </script>
 ```
