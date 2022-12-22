@@ -1,5 +1,5 @@
 # OverWatch
-Simple interactive stateful javascript template engine ( < 1 KB )
+Simple interactive stateful javascript template engine ( ~ 1 KB )
 
 
 ## usage:
@@ -7,7 +7,7 @@ Simple interactive stateful javascript template engine ( < 1 KB )
 ### html:
 ```html
 <div id="company">
-<img w-attr="src" w-val="company.logo" />
+<img o-attr="src" w-val="company.logo" />
 Welcome to {company.name}
   <ul>
     <loop :for="company.faqs" :each="faq">
