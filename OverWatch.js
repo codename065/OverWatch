@@ -8,10 +8,10 @@ const OverWatch = (ID) => {
         let _loops = [];
         let _attrs = [];
         let looped_sections = document.querySelectorAll(`#${ID} loop`);
-        let attrs = document.querySelectorAll(`#${ID} [w-attr]`);
+        let attrs = document.querySelectorAll(`#${ID} [o-attr]`);
 
         for (const [key, elm] of Object.entries(attrs)) {
-            let _attr = elm.getAttribute("w-attr");
+            let _attr = elm.getAttribute("o-attr");
             let _var = elm.getAttribute('w-val');
             if(!_attrs[_var]) _attrs[_var] = []
             _attrs[_var].push({_attr: _attr, _var: _var, _elm: elm});
