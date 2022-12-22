@@ -7,7 +7,8 @@ Simple interactive stateful javascript template engine ( < 1 KB )
 ### html:
 ```html
 <div id="company">
-Hello {company.name}
+<img w-attr="src" w-val="company.logo" />
+Welcome to {company.name}
   <ul>
     <loop :for="company.faqs" :each="faq">
       <li>:faq.title</li>
@@ -22,13 +23,13 @@ Hello {company.name}
 <script src="OverWatch.js"></script>
 <script>
 let watcher = OverWatch('company'); 
-watcher.data.company = { name: 'W3 Eden', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}] } 
+watcher.data.company = { name: 'W3 Eden', logo: 'https://w3eden.com/wp-content/uploads/2021/07/w3edeng-logo-fav.png', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}] } 
 </script>
 ```
 
 ### output:
-
-Hello W3 Eden
+<img src='https://w3eden.com/wp-content/uploads/2021/07/w3edeng-logo-fav.png' />
+Welcome to W3 Eden
 * FAQ 1
 * FAQ 2
 
@@ -41,8 +42,8 @@ watcher.data.company = { name: 'W3 Eden, Inc.', faqs: [{title: 'FAQ 1'}, {title:
 ```
 
 ### output:
-
-Hello W3 Eden, Inc.
+<img src='https://w3eden.com/wp-content/uploads/2021/07/w3edeng-logo-fav.png' />
+Welcome to W3 Eden, Inc.
 
 * FAQ 1
 * FAQ 2
