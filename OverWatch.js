@@ -1,62 +1,88 @@
 /*
 Ⓒ copyright: Shahnur Alam ( https://github.com/codename065/ )
 */
-class OverWatch {     
-        constructor (ID)  {            
-          this.ID = ID;
-          let ow = this;
-                           
-          this.data = new Proxy({}, {
-                set(target, name, value) {
-                    target[name] = value;                  
-                    if(typeof value === 'string')
-                        document.body.innerHTML = document.body.innerHTML.replace(`{${this.ID}.${name}}`, value);
-                    if(typeof value === 'object'){
-                        ow.process(name, value);
-                    } 
-                  ow.loops();
-                }
-            });
+const OverWatch = (ID) => {
+        const area = document.getElementById(ID);
+        const buffer_html = area.innerHTML.replaceAll(/{(.+)}/ig, "<data name='$1'>{$1}</data>");
+        area.innerHTML = buffer_html;
+        let _loops = [];
+        let looped_sections = document.querySelectorAll(`#${ID} loop`);
+        for (const [key, loop] of Object.entries(looped_sections)) {
+            let _for = loop.getAttribute(":for");
+            let _each = loop.getAttribute(":each");
+            _loops[_for] = {_for: _for, _each: _each, _repeat: loop.innerHTML, _loop: loop};
+            loop.innerHTML = '';
         }
-        process(name, obj) { 
-            for (const [key, value] of Object.entries(obj)) {
-              let index = `${name}.${key}`;              
-                if(typeof value === 'string') {                    
-                    document.getElementById(this.ID).innerHTML = document.getElementById(this.ID).innerHTML.replace(`{${index}}`, value);
-                } else if(typeof value === 'object'){
-                    this.process(index, value);
+        console.log('_loops', _loops);
+
+        let parent = [];        
+        let flat_data = [];
+        let key = '';
+
+        const handler = {
+
+            set(target, prop, value) {
+                key = parent.join('.') + `.${prop}`;                
+                parent = [];
+                if (typeof value === 'object') {
+                    value = new Proxy(value, handler);                  
+                    process(key, value);
+                }
+                Reflect.set(target, prop, value);
+                interpret(key, value);
+            },
+
+            get(target, prop, receiver) {
+                parent.push(prop);
+                return Reflect.get(target, prop);
+            }
+
+        };
+
+        const interpret = (key, value) => {
+            document.querySelectorAll(`#${ID} data[name='${key}']`).forEach(elm => {
+                elm.innerHTML = value;
+            });
+        };
+
+        const valueof = (data_source, index) => {
+            let value = data_source;
+            index = index.split('.');
+            index.forEach(prop => {
+                value = Reflect.get(data_source, prop);
+            });           
+            return value;
+        }
+
+        const process = (name, obj) => {
+            console.log('Processed ' + name, obj);
+            if (_loops[name]) {
+                let loop = _loops[name];
+                let _for = obj;
+                let _html = '';
+                let index = 0;
+                _for.forEach(item => {
+                    let keys = Object.keys(item);
+                    let _processed_html = loop._repeat;
+                    keys.forEach(key => {
+                        _processed_html = `<loop_item key='${name}.${index}.${key}'>` + _processed_html.replace(`:${loop._each}.${key}`, item[key]) + `</loop_item>`;
+                    });
+                    _html += _processed_html;
+                    index++;
+                });
+                loop._loop.innerHTML = _html;                
+            }
+
+            for (let [key, value] of Object.entries(obj)) {
+                const index = `${name}.${key}`;
+                if (typeof value !== 'object') {
+                    interpret(index, value);
+                } else if (typeof value === 'object') {
+                    value = new Proxy(value, handler);
+                    process(index, value);
                 }
             }
-        }
-  
-        loops() {    
-          let loops = document.getElementById(this.ID).getElementsByTagName('loop'); 
-          for(const [key, loop] of Object.entries(loops)){
-            let _for = loop.getAttribute(":for");
-            _for = this.valueof(_for);            
-            let _each = loop.getAttribute(":each");            
-            loop.innerHTML = this.loop(_for, _each, loop.innerHTML);
-          } 
-          
-        }
-        loop(_for, _each, _template) {    
-          let _html = '';          
-          _for.forEach(item => {
-            let keys = Object.keys(item);    
-            let _processed_html = _template;
-            keys.forEach(key => { 
-              _processed_html = _processed_html.replace(`{${_each}.${key}}`, item[key]);
-            });   
-            _html += _processed_html;
-          });
-          return _html;
-        } 
-        valueof(index) {
-          let value = this.data;
-          index = index.split('.');
-          index.forEach(prop => {
-            value = value[prop];
-          });           
-          return value;
-        }
+        };
+
+        return new Proxy({}, handler);
     }
