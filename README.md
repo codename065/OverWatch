@@ -20,7 +20,7 @@ Welcome to {company.name}
 ### js:
 
 ```html
-<script src="OverWatch.js"></script>
+<script src="overwatch.js"></script>
 <script>
 let watcher = OverWatch('company'); 
 watcher.data.company = { name: 'W3 Eden', logo: 'https://w3eden.com/wp-content/uploads/2021/07/w3edeng-logo-fav.png', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}] }; 
