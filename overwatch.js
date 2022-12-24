@@ -22,7 +22,7 @@ const OverWatch = (ID) => {
             _loops[_for] = {_for: _for, _each: _each, _repeat: loop.innerHTML, _loop: loop};
             loop.innerHTML = '';
         }
-        //console.log('_attrs', _attrs);
+        //console.log('_loops', _loops);
 
         let parent = [];
         //let data_source = {};
@@ -32,7 +32,7 @@ const OverWatch = (ID) => {
         const handler = {
 
             set(target, prop, value) {
-                key = parent.join('.') + `.${prop}`;
+                key = parent.length > 0 ? parent.join('.') + `.${prop}` : prop;
                 //console.log('Called for ' + "" + key);
                 parent = [];
                 if (typeof value === 'object') {
@@ -52,13 +52,14 @@ const OverWatch = (ID) => {
         };
 
         const interpret = (key, value) => {
+            //console.log('KEY:', key);
             document.querySelectorAll(`#${ID} data[name='${key}']`).forEach(elm => {
                 elm.innerHTML = value;
             });
             if(_attrs[key]) {
                 let elms = _attrs[key];
                 elms.forEach((elm) => {
-                   elm._elm.setAttribute(elm._attr, value);
+                    elm._elm.setAttribute(elm._attr, value);
                 });
             }
         };
@@ -80,16 +81,22 @@ const OverWatch = (ID) => {
                 let _for = obj;
                 let _html = '';
                 let index = 0;
-                _for.forEach(item => {
-                    let keys = Object.keys(item);
-                    let _processed_html = loop._repeat;
-                    keys.forEach(key => {
-                        _processed_html = `<loop_item key='${name}.${index}.${key}'>` + _processed_html.replace(`:${loop._each}.${key}`, item[key]) + `</loop_item>`;
+                console.log('LOOP:', loop);
+                console.log('_for:', _for);
+                try {
+                    _for.forEach(item => {
+                        let keys = Object.keys(item);
+                        let _processed_html = loop._repeat;
+                        keys.forEach(key => {
+                            _processed_html = `<loop_item key='${name}.${index}.${key}'>` + _processed_html.replace(`:${loop._each}.${key}`, item[key]) + `</loop_item>`;
+                        });
+                        _html += _processed_html;
+                        index++;
                     });
-                    _html += _processed_html;
-                    index++;
-                });
-                loop._loop.innerHTML = _html;
+                    loop._loop.innerHTML = _html;
+                } catch (e) {
+
+                }
                 //console.log(_html)
             }
 
