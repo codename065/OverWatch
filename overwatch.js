@@ -5,7 +5,7 @@ const OverWatch = (ID) => {
         const area = document.getElementById(ID);
         const buffer_html = area.innerHTML.replaceAll(/{(.+)}/ig, "<data name='$1'>{$1}</data>");
         area.innerHTML = buffer_html;
-        let _loops = [];
+        let _loops = []; 
         let _attrs = [];
         let looped_sections = document.querySelectorAll(`#${ID} loop`);
         let attrs = document.querySelectorAll(`#${ID} [o-attr]`);
@@ -32,8 +32,9 @@ const OverWatch = (ID) => {
         const handler = {
 
             set(target, prop, value) {
+              //console.log('Called for ', parent);
                 key = parent.length > 0 ? parent.join('.') + `.${prop}` : prop;
-                //console.log('Called for ' + "" + key);
+                //console.log('Called for ', key);
                 parent = [];
                 if (typeof value === 'object') {
                     value = new Proxy(value, handler);
@@ -45,7 +46,8 @@ const OverWatch = (ID) => {
             },
 
             get(target, prop, receiver) {
-                parent.push(prop);
+                if(typeof prop === 'string')
+                  parent.push(prop);
                 return Reflect.get(target, prop);
             }
 
@@ -81,8 +83,8 @@ const OverWatch = (ID) => {
                 let _for = obj;
                 let _html = '';
                 let index = 0;
-                console.log('LOOP:', loop);
-                console.log('_for:', _for);
+                //console.log('LOOP:', loop);
+                //console.log('_for:', _for);
                 try {
                     _for.forEach(item => {
                         let keys = Object.keys(item);
