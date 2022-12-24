@@ -51,6 +51,5 @@ Welcome to W3 Eden, Inc.
 * FAQ 3
 
 Demo:
-https://codepen.io/codename065/pen/GRBKzNa
 
-https://codepen.io/codename065/embed/GRBKzNa?default-tab=result
+https://codepen.io/codename065/pen/GRBKzNa
