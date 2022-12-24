@@ -23,7 +23,7 @@ Welcome to {company.name}
 <script src="overwatch.js"></script>
 <script>
 let watcher = OverWatch('company'); 
-watcher.data.company = { name: 'W3 Eden', logo: 'https://w3eden.com/wp-content/uploads/2021/07/w3edeng-logo-fav.png', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}] }; 
+watcher.company = { name: 'W3 Eden', logo: 'https://w3eden.com/wp-content/uploads/2021/07/w3edeng-logo-fav.png', faqs: [{title: 'FAQ 1'}, {title: 'FAQ 2'}] }; 
 </script>
 ```
 
@@ -38,7 +38,7 @@ Welcome to W3 Eden
 ### on update data:
 ```html
 <script>
-watcher.data.company.faqs = [{title: 'FAQ 1'}, {title: 'FAQ 2'}, {title: 'FAQ 3'}];
+watcher.company.faqs = [{title: 'FAQ 1'}, {title: 'FAQ 2'}, {title: 'FAQ 3'}];
 </script>
 ```
 
